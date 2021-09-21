@@ -1,0 +1,6 @@
+node_modules
+.expo
+.vscode/*
+web-build/*
+.env
+.DS_Store
