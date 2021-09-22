@@ -5,7 +5,7 @@ import PasswordEnabledStack from "./PasswordEnabledNavigator";
 import PasswordlessStack from "./PasswordlessNavigator";
 
 const AuthNavigator = () => {
-    return isPasswordless() ? <PasswordlessStack /> : <PasswordEnabledStack />;
+  return isPasswordless() ? <PasswordlessStack /> : <PasswordEnabledStack />;
 };
 
 export default AuthNavigator;

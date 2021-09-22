@@ -6,12 +6,12 @@ This repository provides a working example of a React Native mobile application 
 
 1.  A few prerequisites you should install on your OS:
 
-    -   a recent Node version (v12+),
-    -   the yarn Node package manager
+    - a recent Node version (v12+),
+    - the yarn Node package manager
 
-2.  Ensure your [local environment variables](https://github.com/capable-health/capable-care-mobile-demo/blob/dev/.env.sample) are set correctly. Copy the included `.env.sample` file to a `.env` file and add the values provided by the Capable Health team. 
+2.  Ensure your [local environment variables](https://github.com/capable-health/capable-care-mobile-demo/blob/dev/.env.sample) are set correctly. Copy the included `.env.sample` file to a `.env` file and add the values provided by the Capable Health team.
 
-    NB: if you make changes to the .env file, make sure to restart your server to have them picked up by the server. 
+    NB: if you make changes to the .env file, make sure to restart your server to have them picked up by the server.
 
 3.  Then install your dependencies and run the app:
 
@@ -22,10 +22,10 @@ This repository provides a working example of a React Native mobile application 
 
 4.  Upon successfully starting the app you will be brought into the Metro Bundler's React Native dashboard. From there you'll have links that will enable you to see the app:
 
--   in an [iOS emulator](https://docs.expo.dev/workflow/ios-simulator/), or an
--   [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/), or
--   an actual iOS or Android device through the [Expo app](https://docs.expo.dev/get-started/installation/#2-expo-go-app-for-ios-and), or
--   on the web by clicking on the web option in the Metro Bundler's UI
+- in an [iOS emulator](https://docs.expo.dev/workflow/ios-simulator/), or an
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/), or
+- an actual iOS or Android device through the [Expo app](https://docs.expo.dev/get-started/installation/#2-expo-go-app-for-ios-and), or
+- on the web by clicking on the web option in the Metro Bundler's UI
 
 ## Contributing guidelines
 
