@@ -9,12 +9,13 @@ This repository provides a working example of a React Native mobile application 
     -   a recent Node version (v12+),
     -   the yarn Node package manager
 
-2.  Ensure your [local environment variables](https://github.com/capable-health/capable-care-mobile-demo/blob/dev/.env.sample) are set correctly. Copy the included `.env.sample` file to a `.env` file and add the values provided by the Capable Health team.
+2.  Ensure your [local environment variables](https://github.com/capable-health/capable-care-mobile-demo/blob/dev/.env.sample) are set correctly. Copy the included `.env.sample` file to a `.env` file and add the values provided by the Capable Health team. 
 
-3.  Then run the following commands:
+    NB: if you make changes to the .env file, make sure to restart your server to have them picked up by the server. 
+
+3.  Then install your dependencies and run the app:
 
     ```bash
-    cd capable-care-mobile-demo
     yarn install
     yarn run start
     ```
