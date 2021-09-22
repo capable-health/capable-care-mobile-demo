@@ -1,7 +1,7 @@
 
 ### Ticket or Explanation for PR
 
-ex: `[ch{shortcut-ticket-id}]`
+ex: `[sc-{shortcut-ticket-id}]`
 
 ### Please describe how the PR was tested
 

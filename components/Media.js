@@ -6,28 +6,28 @@ import React from "react";
 import styles from "../styles/capableStyle";
 
 const Media = ({ mediaSource, isVideo }) => {
-    const video = React.useRef(null);
+  const video = React.useRef(null);
 
-    return isVideo ? (
-        <Video
-            source={mediaSource}
-            style={{ width: 375, height: video.height }}
-            ref={video}
-            resizeMode={"cover"}
-            isLooping
-            isMuted
-            onLoad={() => {
-                video.current.playAsync();
-            }}
-        />
-    ) : (
-        <Image source={mediaSource} style={styles.goalHeaderImage} />
-    );
+  return isVideo ? (
+    <Video
+      source={mediaSource}
+      style={{ width: 375, height: video.height }}
+      ref={video}
+      resizeMode={"cover"}
+      isLooping
+      isMuted
+      onLoad={() => {
+        video.current.playAsync();
+      }}
+    />
+  ) : (
+    <Image source={mediaSource} style={styles.goalHeaderImage} />
+  );
 };
 
 Media.propTypes = {
-    mediaSource: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-    isVideo: PropTypes.bool,
+  mediaSource: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  isVideo: PropTypes.bool,
 };
 
 export default Media;
