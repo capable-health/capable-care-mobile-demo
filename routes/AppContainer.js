@@ -11,26 +11,26 @@ import Navigator from "./authenticated/Navigator";
 import theme from "../styles/theme";
 
 const AppContainer = () => {
-    const { cognitoUser } = useContext(AuthContext);
-    const isAuthenticated = cognitoUser.signInUserSession;
+  const { cognitoUser } = useContext(AuthContext);
+  const isAuthenticated = cognitoUser.signInUserSession;
 
-    useEffect(() => {
-        Logger.setDefaults();
-        if (Constants.manifest.extra.CH_ENV) {
-            Sentry.init({
-                dsn: Constants.manifest.extra.SENTRY_DSN,
-                environment: Constants.manifest.extra.CH_ENV,
-                enableInExpoDevelopment: true,
-            });
-        }
-        CapableClient.config({ apiUrl: Constants.manifest.extra.API_URL });
-    }, []);
+  useEffect(() => {
+    Logger.setDefaults();
+    if (Constants.manifest.extra.CH_ENV) {
+      Sentry.init({
+        dsn: Constants.manifest.extra.SENTRY_DSN,
+        environment: Constants.manifest.extra.CH_ENV,
+        enableInExpoDevelopment: true,
+      });
+    }
+    CapableClient.config({ apiUrl: Constants.manifest.extra.API_URL });
+  }, []);
 
-    return (
-        <NavigationContainer theme={theme.CombinedDefaultTheme}>
-            {isAuthenticated ? <Navigator /> : <AuthNavigator />}
-        </NavigationContainer>
-    );
+  return (
+    <NavigationContainer theme={theme.CombinedDefaultTheme}>
+      {isAuthenticated ? <Navigator /> : <AuthNavigator />}
+    </NavigationContainer>
+  );
 };
 
 export default AppContainer;

@@ -16,17 +16,17 @@ Before merging, make sure your PR is rebased or has pulled in the latest changes
 
 2. FORMATTING: we use [prettier](https://prettier.io/) to format the code in our repository. Please follow the steps to [setup your editor of choice](https://prettier.io/docs/en/editors.html) with the prettier extension so that your code meets our formatting guidelines. Alternatively, you can run `yarn run format` to format all the files in one go. If you choose that option, please make sure to do so as one separate commit.
 
-    ### VS Code + Prettier ex:
+   ### VS Code + Prettier ex:
 
-    - Install [VS Code prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-    - Include the following lines in the `settings.json` of your VS Code editor:
-        ```
-        {
-            "editor.formatOnSave": true, // prettier will automatically format your files on each save
-            "editor.defaultFormatter": "esbenp.prettier-vscode"
-        }
-        ```
-    - Prettier will now automatically format your files as you save them
+   - Install [VS Code prettier extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+   - Include the following lines in the `settings.json` of your VS Code editor:
+     ```
+     {
+         "editor.formatOnSave": true, // prettier will automatically format your files on each save
+         "editor.defaultFormatter": "esbenp.prettier-vscode"
+     }
+     ```
+   - Prettier will now automatically format your files as you save them
 
 ## Debugging
 

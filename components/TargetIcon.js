@@ -5,13 +5,13 @@ import React from "react";
 import { findOneTagByType } from "../helpers/tagging";
 
 const TargetIcon = ({ target, style }) => {
-    const iconValue = findOneTagByType(target.tag_list, "icon") || "square";
-    return <Icon name={iconValue} style={[style, { color: "#000" }]} />;
+  const iconValue = findOneTagByType(target.tag_list, "icon") || "square";
+  return <Icon name={iconValue} style={[style, { color: "#000" }]} />;
 };
 
 TargetIcon.propTypes = {
-    target: PropTypes.object.isRequired,
-    style: PropTypes.object,
+  target: PropTypes.object.isRequired,
+  style: PropTypes.object,
 };
 
 export default TargetIcon;

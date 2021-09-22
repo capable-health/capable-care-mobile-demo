@@ -8,19 +8,19 @@ import PasswordlessSignUp from "../../screens/auth/passwordless/PasswordlessSign
 const Stack = createStackNavigator();
 
 const PasswordlessStack = () => {
-    return (
-        <Stack.Navigator headerMode="none">
-            <Stack.Screen name="PasswordlessSignIn">
-                {(screenProps) => <PasswordlessSignIn {...screenProps} />}
-            </Stack.Screen>
-            <Stack.Screen name="PasswordlessConfirmSignIn">
-                {(screenProps) => <PasswordlessConfirmSignIn {...screenProps} />}
-            </Stack.Screen>
-            <Stack.Screen name="PasswordlessSignUp">
-                {(screenProps) => <PasswordlessSignUp {...screenProps} />}
-            </Stack.Screen>
-        </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="PasswordlessSignIn">
+        {(screenProps) => <PasswordlessSignIn {...screenProps} />}
+      </Stack.Screen>
+      <Stack.Screen name="PasswordlessConfirmSignIn">
+        {(screenProps) => <PasswordlessConfirmSignIn {...screenProps} />}
+      </Stack.Screen>
+      <Stack.Screen name="PasswordlessSignUp">
+        {(screenProps) => <PasswordlessSignUp {...screenProps} />}
+      </Stack.Screen>
+    </Stack.Navigator>
+  );
 };
 
 export default PasswordlessStack;
