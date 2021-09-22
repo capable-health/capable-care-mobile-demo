@@ -80,7 +80,10 @@ class CarePlan extends DataWrapper {
             }),
         ]);
       } else throw "Care plan template not found.";
-    } else carePlan = new CarePlan(carePlans[0]);
+    } else {
+      const activeCarePlans = carePlans.filter((carePlan) => carePlan.status == "active");
+      carePlan = new CarePlan(activeCarePlans[0]);
+    }
 
     return carePlan;
   }

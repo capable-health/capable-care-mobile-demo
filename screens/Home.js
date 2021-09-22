@@ -327,6 +327,8 @@ const Home = ({ navigation }) => {
   const [carePlan, setCarePlan] = useState(new CarePlan());
   const [goals, setGoals] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [activeGoals, setActiveGoals] = useState([]);
+  const [activeTasks, setActiveTasks] = useState([]);
   const [selectedWeek, setSelectedWeek] = useState(1);
   const isFocused = useIsFocused();
 
@@ -400,6 +402,16 @@ const Home = ({ navigation }) => {
     });
   }, [isFocused]);
 
+  useEffect(() => {
+    const activeGoals = goals.filter((goal) => goal.care_plan_id == carePlan.id);
+    setActiveGoals(activeGoals);
+  }, [carePlan, goals]);
+
+  useEffect(() => {
+    const activeTasks = tasks.filter((task) => task.care_plan_id == carePlan.id);
+    setActiveTasks(activeTasks);
+  }, [carePlan, tasks]);
+
   const toggleTaskStatus = (task) => {
     task.setStatus(Number(!task.isCompleted)).then((updatedTask) => {
       setTasks(tasks.map((task) => (task.id == updatedTask.id ? updatedTask : task)));
@@ -415,8 +427,8 @@ const Home = ({ navigation }) => {
         onSelectWeek={setSelectedWeek}
         navigation={navigation}
       />
-      <GoalsList goals={goals} week={selectedWeek} />
-      <TaskList tasks={tasks} week={selectedWeek} toggleTaskStatus={toggleTaskStatus} />
+      <GoalsList goals={activeGoals} week={selectedWeek} />
+      <TaskList tasks={activeTasks} week={selectedWeek} toggleTaskStatus={toggleTaskStatus} />
     </AppView>
   );
 };
