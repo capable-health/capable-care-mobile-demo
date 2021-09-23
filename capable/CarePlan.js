@@ -3,7 +3,7 @@ import Logger from "js-logger";
 import { CapableClient, GET, POST } from "./api";
 import { CarePlanTemplate } from "./CarePlanTemplate";
 import { DataWrapper } from "./DataWrapper";
-import { today } from "../helpers/dayjs";
+import { dayjs, today } from "../helpers/dayjs";
 import { Goal } from "./Goal";
 import { GoalTemplate } from "./GoalTemplate";
 import { Task } from "./Task";
@@ -80,7 +80,17 @@ class CarePlan extends DataWrapper {
             }),
         ]);
       } else throw "Care plan template not found.";
-    } else carePlan = new CarePlan(carePlans[0]);
+    } else {
+      const activeCarePlans = carePlans
+        .filter((carePlan) => carePlan.status == "active")
+        .sort((a, b) => {
+          const dateA = dayjs.utc(a.created_at);
+          const dateB = dayjs.utc(b.created_at);
+          return dateB.diff(dateA);
+        });
+      if (activeCarePlans.length == 0) throw "No active care plans found.";
+      carePlan = new CarePlan(activeCarePlans[0]);
+    }
 
     return carePlan;
   }
