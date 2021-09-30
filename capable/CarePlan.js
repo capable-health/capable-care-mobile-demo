@@ -3,11 +3,7 @@ import Logger from "js-logger";
 import { CapableClient, GET, POST } from "./api";
 import { CarePlanTemplate } from "./CarePlanTemplate";
 import { DataWrapper } from "./DataWrapper";
-import { dayjs, today } from "../helpers/dayjs";
-import { Goal } from "./Goal";
-import { GoalTemplate } from "./GoalTemplate";
-import { Task } from "./Task";
-import { TaskTemplate } from "./TaskTemplate";
+import { dayjs } from "../helpers/dayjs";
 
 class CarePlan extends DataWrapper {
   static create(care_plan_template_id) {
