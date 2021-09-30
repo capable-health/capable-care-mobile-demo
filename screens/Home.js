@@ -337,69 +337,67 @@ const Home = ({ navigation }) => {
       setPatient(patient);
     });
 
-    CarePlan.ensureExistOrCreate(
-      Constants.manifest.extra.templates.CARE_PLAN_TEMPLATE_EXTERNAL_ID,
-      Constants.manifest.extra.templates.GOAL_TEMPLATE_EXTERNAL_IDS,
-      Constants.manifest.extra.templates.TASK_TEMPLATE_EXTERNAL_IDS
-    ).then((currentCarePlan) => {
-      if (currentCarePlan.cms_entry_id?.length > 0) {
-        retrieveEntry(currentCarePlan.cms_entry_id)
-          .then((contentfulEntry) => {
-            currentCarePlan.name = contentfulEntry.title;
-            currentCarePlan.imageUrl = `https:${contentfulEntry.headerImage.fields.file.url}`;
-            currentCarePlan.description = contentfulEntry.description;
-          })
-          .finally(() => setCarePlan(currentCarePlan));
-      } else {
-        setCarePlan(currentCarePlan);
-      }
-    });
-
-    Goal.getList().then((currentGoals) => {
-      let goalPromises = [];
-      currentGoals.forEach((goal) => {
-        if (goal.cms_entry_id?.length > 0) {
-          goalPromises.push(
-            new Promise((resolve) => {
-              retrieveEntry(goal.cms_entry_id)
-                .then((contentfulEntry) => {
-                  goal.name = contentfulEntry.title;
-                  goal.imageUrl = `https:${contentfulEntry.headerImage.fields.file.url}`;
-                  goal.description = contentfulEntry.description;
-                  resolve();
-                })
-                .catch((err) => Promise.reject(err));
+    CarePlan.ensureExistOrCreate(Constants.manifest.extra.templates.CARE_PLAN_TEMPLATE_EXTERNAL_ID)
+      .then((currentCarePlan) => {
+        if (currentCarePlan.cms_entry_id?.length > 0) {
+          retrieveEntry(currentCarePlan.cms_entry_id)
+            .then((contentfulEntry) => {
+              currentCarePlan.name = contentfulEntry.title;
+              currentCarePlan.imageUrl = `https:${contentfulEntry.headerImage.fields.file.url}`;
+              currentCarePlan.description = contentfulEntry.description;
             })
-          );
+            .finally(() => setCarePlan(currentCarePlan));
+        } else {
+          setCarePlan(currentCarePlan);
         }
-      });
-
-      Promise.all(goalPromises).finally(() => {
-        setGoals(currentGoals);
-      });
-    });
-
-    Task.getList().then((currentTasks) => {
-      let taskPromises = [];
-      currentTasks.forEach((task) => {
-        if (task.cms_entry_id?.length > 0) {
-          taskPromises.push(
-            new Promise((resolve) => {
-              retrieveEntry(task.cms_entry_id)
-                .then((contentfulEntry) => {
-                  task.name = contentfulEntry.title;
-                  resolve();
+      })
+      .then(() => {
+        Goal.getList().then((currentGoals) => {
+          let goalPromises = [];
+          currentGoals.forEach((goal) => {
+            if (goal.cms_entry_id?.length > 0) {
+              goalPromises.push(
+                new Promise((resolve) => {
+                  retrieveEntry(goal.cms_entry_id)
+                    .then((contentfulEntry) => {
+                      goal.name = contentfulEntry.title;
+                      goal.imageUrl = `https:${contentfulEntry.headerImage.fields.file.url}`;
+                      goal.description = contentfulEntry.description;
+                      resolve();
+                    })
+                    .catch((err) => Promise.reject(err));
                 })
-                .catch((err) => Promise.reject(err));
-            })
-          );
-        }
-      });
+              );
+            }
+          });
 
-      Promise.all(taskPromises).finally(() => {
-        setTasks(currentTasks);
+          Promise.all(goalPromises).finally(() => {
+            setGoals(currentGoals);
+          });
+        });
+
+        Task.getList().then((currentTasks) => {
+          let taskPromises = [];
+          currentTasks.forEach((task) => {
+            if (task.cms_entry_id?.length > 0) {
+              taskPromises.push(
+                new Promise((resolve) => {
+                  retrieveEntry(task.cms_entry_id)
+                    .then((contentfulEntry) => {
+                      task.name = contentfulEntry.title;
+                      resolve();
+                    })
+                    .catch((err) => Promise.reject(err));
+                })
+              );
+            }
+          });
+
+          Promise.all(taskPromises).finally(() => {
+            setTasks(currentTasks);
+          });
+        });
       });
-    });
   }, [isFocused]);
 
   useEffect(() => {
