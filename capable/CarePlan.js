@@ -3,11 +3,7 @@ import Logger from "js-logger";
 import { CapableClient, GET, POST } from "./api";
 import { CarePlanTemplate } from "./CarePlanTemplate";
 import { DataWrapper } from "./DataWrapper";
-import { dayjs, today } from "../helpers/dayjs";
-import { Goal } from "./Goal";
-import { GoalTemplate } from "./GoalTemplate";
-import { Task } from "./Task";
-import { TaskTemplate } from "./TaskTemplate";
+import { dayjs } from "../helpers/dayjs";
 
 class CarePlan extends DataWrapper {
   static create(care_plan_template_id) {
@@ -33,11 +29,7 @@ class CarePlan extends DataWrapper {
     });
   }
 
-  static async ensureExistOrCreate(
-    CARE_PLAN_TEMPLATE_EXTERNAL_ID,
-    GOALS_TEMPLATES,
-    TASKS_TEMPLATES
-  ) {
+  static async ensureExistOrCreate(CARE_PLAN_TEMPLATE_EXTERNAL_ID) {
     let carePlan;
     const carePlans = await CarePlan.getList();
     if (carePlans.length == 0) {
@@ -50,35 +42,6 @@ class CarePlan extends DataWrapper {
         carePlan = await CarePlan.create(carePlanTemplate01.id);
 
         Logger.info("CarePlan created: ", carePlan);
-
-        const inOneMonth = today.add(1, "month");
-        const start_on = today.toISOString();
-        const due_on = inOneMonth.toISOString();
-
-        const goalTemplates = await GoalTemplate.getList();
-        const taskTemplates = await TaskTemplate.getList();
-
-        await Promise.all([
-          ...goalTemplates
-            .filter((goalTemplate) => GOALS_TEMPLATES.includes(goalTemplate.external_id))
-            .map(async (goalTemplate) => {
-              return await Goal.create({
-                goal_template_id: goalTemplate.id,
-                care_plan_id: carePlan.id,
-                start_on,
-                due_on,
-              });
-            }),
-          ...taskTemplates
-            .filter((taskTemplate) => TASKS_TEMPLATES.includes(taskTemplate.external_id))
-            .map(async (taskTemplate) => {
-              return await Task.create({
-                task_template_id: taskTemplate.id,
-                care_plan_id: carePlan.id,
-                due_on,
-              });
-            }),
-        ]);
       } else throw "Care plan template not found.";
     } else {
       const activeCarePlans = carePlans

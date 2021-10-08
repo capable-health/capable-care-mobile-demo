@@ -43,12 +43,6 @@ export default () => {
       CONTENTFUL_DELIVERY_TOKEN: process.env.CONTENTFUL_DELIVERY_TOKEN,
       templates: {
         CARE_PLAN_TEMPLATE_EXTERNAL_ID: process.env.CARE_PLAN_TEMPLATE_EXTERNAL_ID,
-        GOAL_TEMPLATE_EXTERNAL_IDS: process.env.GOAL_TEMPLATE_EXTERNAL_IDS
-          ? process.env.GOAL_TEMPLATE_EXTERNAL_IDS.split(",")
-          : [],
-        TASK_TEMPLATE_EXTERNAL_IDS: process.env.TASK_TEMPLATE_EXTERNAL_IDS
-          ? process.env.TASK_TEMPLATE_EXTERNAL_IDS.split(",")
-          : [],
       },
     },
   };
