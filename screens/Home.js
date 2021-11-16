@@ -54,7 +54,9 @@ const Weeks = [
 ];
 
 const filterBySelectedWeek = (list, selectedWeek) => {
-  return list.filter((item) => item.tag_list.includes(`Week ${selectedWeek}`));
+  return list.filter((item) =>
+    item.tag_list.map((tag) => tag.toLowerCase()).includes(`week ${selectedWeek}`)
+  );
 };
 
 const filterOutByStatuses = (list, statuses) => {
